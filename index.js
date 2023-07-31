@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Client, MessageEmbed } = require("discord.js");
 const client = new Client();
 const { prefix } = require("./config.json");
-const { ping, daily, server, react } = require('./src/controllers/index');
+const { ping, daily, server, react, collector } = require('./src/controllers/index');
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -18,14 +18,17 @@ client.on("message", (message) => {
       ping(message)
       break;
     case "daily":
-      daily(message, MessageEmbed)
+      daily(message)
       break;
     case "react":
       react(message)
       break;
     case "server":
-      server(message, MessageEmbed)
-      break
+      server(message)
+      break;
+    case "collector":
+      collector(message)
+      break;
     default:
   }
 });
